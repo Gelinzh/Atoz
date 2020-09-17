@@ -14,7 +14,7 @@
 
 + 版本选择
 
-    程序有两个版本，一个是需要你的电脑上安装了java的版本（推荐），一个是内部附带jre的版本，根据自己的需要选择吧
+    程序有两个版本，一个是需要你的电脑上安装了java的[版本](https://github.com/Gelinzh/Atoz/releases/download/1.0.0/Atoz_v1.0.0.exe)（推荐），一个是内部[附带jre](https://github.com/Gelinzh/Atoz/releases/download/1.0.0Jre/Atoz_withJre_v1.0.0.exe)的版本，根据自己的需要选择吧
 
 + 初始界面
 
