@@ -24,6 +24,8 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 import java.util.List;
 import java.util.Timer;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MainFrame extends JFrame
 {
@@ -943,22 +945,75 @@ public class MainFrame extends JFrame
                 //Check Search Bar
                 if (!isSearchBarEmpty)
                 {
-                    if (temp.name.length() > target.length()) //if this word is long enough
+                    if (target.matches("^\\d.*$")) //search by date
                     {
-                        for (int i = 0; i < temp.name.length(); i++) //loop through this word by checking substring
+                        String tarYear, tarMonth, tarDay, tempYear, tempMonth, tempDay;
+                        Pattern pattern = Pattern.compile("^(\\d+)[\\D]*?(\\d+)?[\\D]*?(\\d+)?$");
+                        Matcher tarMatcher = pattern.matcher(target), tempMatcher = pattern.matcher(temp.registrationTime);
+                        if (tarMatcher.find() && tempMatcher.find())
                         {
-                            if (temp.name.substring(i).length() < target.length()) //if substring isn't long enough, end looping
-                                break;
-                            String tempSubString = temp.name.substring(i, i + target.length());
-                            if (tempSubString.equals(target))
+                            tarYear = tarMatcher.group(1);
+                            tarMonth = tarMatcher.group(2) != null ? tarMatcher.group(2) : "";
+                            tarDay = tarMatcher.group(3) != null ? tarMatcher.group(3) : "";
+                            tempYear = tempMatcher.group(1);
+                            tempMonth = tempMatcher.group(2) != null ? tempMatcher.group(2) : "";
+                            tempDay = tempMatcher.group(3) != null ? tempMatcher.group(3) : "";
+
+                            if (!tarYear.equals("") && !tarMonth.equals("") && !tarDay.equals("")) //Full Formation
                             {
-                                allowToKeep = true;
-                                break;
+                                if (tarYear.equals(tempYear) && tarMonth.equals(tempMonth) && tarDay.equals(tempDay))
+                                    allowToKeep = true;
+                            }
+                            else if (!tarYear.equals("") && !tarMonth.equals("")) //Year-Month Formation
+                            {
+                                if (tarYear.equals(tempYear) && tarMonth.equals(tempMonth))
+                                    allowToKeep = true;
+                                else if (tarYear.equals(tempYear)) //Month String Contains Day Info
+                                {
+                                    if (tarMonth.length() > 2)
+                                    {
+                                        if (tarMonth.substring(0, 1).equals(tempMonth) && tarMonth.substring(1).equals(tempDay))
+                                            allowToKeep = true;
+                                        else if (tarMonth.substring(0, 2).equals(tempMonth) && tarMonth.substring(2).equals(tempDay))
+                                            allowToKeep = true;
+                                    }
+                                }
+                            }
+                            else if (!tarYear.equals("")) //Year Formation / Single String Formation
+                            {
+                                if (tarYear.length() <= tempYear.length()) //Year Formation
+                                {
+                                    if (tarYear.equals(tempYear))
+                                        allowToKeep = true;
+                                }
+                                else // String Formation
+                                {
+                                    String tempDate = tempYear + tempMonth + tempDay;
+                                    if (tarYear.length() <= tempDate.length() && tempDate.substring(0, tarYear.length()).equals(tarYear))
+                                        allowToKeep = true;
+                                }
                             }
                         }
                     }
-                    else if (temp.name.equals(target))
-                        allowToKeep = true;
+                    else //search by name
+                    {
+                        if (temp.name.length() > target.length()) //if this word is long enough
+                        {
+                            for (int i = 0; i < temp.name.length(); i++) //loop through this word by checking substring
+                            {
+                                if (temp.name.substring(i).length() < target.length()) //if substring isn't long enough, end looping
+                                    break;
+                                String tempSubString = temp.name.substring(i, i + target.length());
+                                if (tempSubString.equals(target))
+                                {
+                                    allowToKeep = true;
+                                    break;
+                                }
+                            }
+                        }
+                        else if (temp.name.equals(target))
+                            allowToKeep = true;
+                    }
                 }
                 else
                     allowToKeep = true;
