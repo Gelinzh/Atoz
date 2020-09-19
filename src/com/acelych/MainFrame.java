@@ -983,7 +983,7 @@ public class MainFrame extends JFrame
                             {
                                 if (tarYear.length() <= tempYear.length()) //Year Formation
                                 {
-                                    if (tarYear.equals(tempYear))
+                                    if (tempYear.substring(0, tarYear.length()).equals(tarYear))
                                         allowToKeep = true;
                                 }
                                 else // String Formation
