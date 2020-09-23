@@ -14,7 +14,9 @@
 
 + 版本选择
 
-    程序有两个版本，一个是需要你的电脑上安装了java的[版本](https://github.com/Gelinzh/Atoz/releases/download/1.0.1/Atoz_v1.0.1.exe)（推荐），一个是内部[附带jre](https://github.com/Gelinzh/Atoz/releases/download/1.0.0Jre/Atoz_withJre_v1.0.0.exe)的版本，根据自己的需要选择吧
+    程序有两个版本，一个是需要你的电脑上安装了java的[版本](https://github.com/Gelinzh/Atoz/releases/download/1.1.0/Atoz_v1.1.0.exe)（推荐），一个是内部[附带jre](https://github.com/Gelinzh/Atoz/releases/download/1.0.0Jre/Atoz_withJre_v1.0.0.exe)的版本，根据自己的需要选择吧
+
+    **注意：1.1.0及以上版本不再提供内置jre支持！请先安装[java](https://www.java.com/)！**
 
 + 初始界面
 
@@ -34,6 +36,8 @@
 
     + `Word Name`项填写规则遵循正则表达式：`"^(\w+-?)+(\w+)$"`
 
+        >  1.1.0更新：正则表达式规则改为：`^\\.?(\\w+[.-]?)+(\\w+\\.?)$`
+
     + `Translation`项没有填写规则，建议填入的汉字数少于七个，不然容易显示不全
 
     + `Proficiency`项为初始熟练度，一共有五个等级：
@@ -47,6 +51,8 @@
         你可以根据如上的对应关系设置初始熟练度
 
     + `CET4`和`CET6`选框为选择单词是否在四级或六级的考试范围内
+
+    > 1.1.0更新：添加同步按钮，输入单词后可自动同步翻译和四六级信息（需要联网）
 
 + 查看列表
 
@@ -62,6 +68,10 @@
     + 排序方法切换：点击选择排序方法，可以根据首字母、添加日期和熟练度排序；
     + 搜索过滤：输入关键字以精确检索单词
     + CET4/CET6：勾选后根据是否为四六级单词过滤列表
+
+    另外，在选中单词后，按下`delete`按钮可删除不想要的单词
+
+    > 1.1.0更新：选中单词后，双击单词可获得详细翻译，翻译内容由金山词霸提供（需要连网）
 
 + 每日测试
 
