@@ -16,7 +16,7 @@
 
     程序有两个版本，一个是需要你的电脑上安装了java的[版本](https://github.com/Gelinzh/Atoz/releases/download/1.1.0/Atoz_v1.1.0.exe)（推荐），一个是内部[附带jre](https://github.com/Gelinzh/Atoz/releases/download/1.0.0Jre/Atoz_withJre_v1.0.0.exe)的版本，根据自己的需要选择吧
 
-    **注意：1.1.0及以上版本不再提供内置jre支持！请先安装[java](https://www.java.com/)！**
+    **注意：1.1.0及以上版本不再提供内置jre支持！请先安装[java](https://www.oracle.com/java/technologies/javase-jre8-downloads.html)！**
 
 + 初始界面
 
